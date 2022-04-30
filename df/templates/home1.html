@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="Images/logo1.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#2c3e50" />
+    <meta name="theme-color" content="#2c3e50" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discussion Forum - LabSpots</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(function () {
+        $("#footer").load("./components/footer.html");
+        $("#scroll").load("./components/scrolltoTop.html");
+      });
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <nav>
+          <input type="checkbox" id="show-menu" />
+          <label for="show-menu" class="menu-icon"
+            ><i class="fas fa-bars"></i
+          ></label>
+          <div class="content">
+            <div class="logo">
+              <a href="../index.html"
+                ><img src="./Images/logo1.png" /><span>LabSpot</span></a
+              >
+            </div>
+            <ul class="links" id="links">
+              <li><a href="../index.html" class="active">Home</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../lab.html">Laboratory</a></li>
+              <li><a href="../feedback.html">Feedback</a></li>
+              <li class="search-btn">
+                <a href="../search.html"
+                  >Search <i class="fas fa-search"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    <h2>Currently active forums: {{count}}
+        <form method="POST" action="{% url 'addInForum' %}">
+            {% csrf_token %}
+        <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+        </form>
+    </h2>
+        <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
+        
+        
+        {%for forum in forums %}
+        
+            <div class="card box container">
+                <br>
+                <h5 class="card-title">
+                    <a href='{{forum.link}}'><h3>{{forum.topic}}</h3></a> 
+                    <div class="card-body container">
+                            <p>{{forum.description}}</p>
+                        </h5>
+                        <hr>
+                        <p> By: {{forum.name}}</p>
+                        <hr>     
+                        <h4>Views from other users</h4>
+                        {%for discuss in discussions%}
+                        {%for objs in discuss%}  
+                        {% if objs.forum == forum %}
+                           {{objs.discuss}}
+                           <br>
+                        {% endif %}
+                        {%endfor%}
+                        {%endfor%}
+                        <form method="POST" action="{% url 'addInDiscussion' %}">
+                            {% csrf_token %}
+                        <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+        <br>
+        
+        {%endfor%}
+</body>
+</html>
+
+
+<h2>Currently active forums: {{count}}
+  <form method="POST" action="{% url 'addInForum' %}">
+      {% csrf_token %}
+  <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+  </form>
+</h2>
+  <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
+  
+  
+  {%for forum in forums %}
+  
+      <div class="card box container">
+          <br>
+          <h5 class="card-title">
+              <a href='{{forum.link}}'><h3>{{forum.topic}}</h3></a> 
+              <div class="card-body container">
+                      <p>{{forum.description}}</p>
+                  </h5>
+                  <hr>
+                  <p> By: {{forum.name}}</p>
+                  <hr>     
+                  <h4>Views from other users</h4>
+                  {%for discuss in discussions%}
+                  {%for objs in discuss%}  
+                  {% if objs.forum == forum %}
+                     {{objs.discuss}}
+                     <br>
+                  {% endif %}
+                  {%endfor%}
+                  {%endfor%}
+                  <form method="POST" action="{% url 'addInDiscussion' %}">
+                      {% csrf_token %}
+                  <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+                  </form>
+              </div>
+      </div>
+  </div>
+  <br>
+  
+  {%endfor%}
+</body>

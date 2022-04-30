@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from df.views import *
- 
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='home'),
     path('addInForum/',addInForum,name='addInForum'),
     path('addInDiscussion/',addInDiscussion,name='addInDiscussion'),
+
 ]
+
+urlpatterns += staticfiles_urlpatterns()
