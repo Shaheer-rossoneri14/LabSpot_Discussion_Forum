@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-tajy&-3b(_o#k5
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['https://labspot-discussion-forum.herokuapp.com/']
+ALLOWED_HOSTS = ['https://labspot-discussion-forum.herokuapp.com/', 'labspot-discussion-forum.herokuapp.com']
 
 
 # Application definition
