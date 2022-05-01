@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: BASE_DIR , 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMP_DIR = os.path.join(BASE_DIR,'templates')
@@ -26,8 +27,8 @@ TEMP_DIR = os.path.join(BASE_DIR,'templates')
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-tajy&-3b(_o#k5+rc-kb0tz64l-silrbsk@64umh(^4p4^c^63')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+# DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = []
 
@@ -144,7 +145,7 @@ DATABASES['default'].update(db_from_env)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = BASE_DIR , 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
 
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
